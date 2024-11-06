@@ -24,7 +24,7 @@ from langchain.chains import create_history_aware_retriever, create_retrieval_ch
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_community.document_loaders import PyPDFLoader
 
-torch.cuda.empty_cache()
+
 
 from dotenv import load_dotenv
 
