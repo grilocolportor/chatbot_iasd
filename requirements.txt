@@ -9,7 +9,6 @@ apt-clone==0.2.1
 argcomplete==1.8.1
 asgiref==3.8.1
 async-timeout==4.0.1
-apt-clone==0.2.1
 attrs==24.2.0
 backoff==2.2.1
 bcrypt==4.2.0
