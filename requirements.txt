@@ -36,7 +36,7 @@ jsonschema==4.23.0
 langsmith==0.1.139
 pandas==2.2.3
 protobuf==4.25.5
-PyPDF2==3.0.1
+pypdf==5.1.0
 python-dateutil==2.9.0.post0
 pytz==2022.1
 PyYAML==6.0.2
