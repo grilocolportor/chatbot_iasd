@@ -14,6 +14,7 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 import wikipediaapi
 import os
 import time
+import requests
 from dotenv import load_dotenv
 
 load_dotenv()
