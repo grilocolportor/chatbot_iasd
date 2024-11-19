@@ -18,6 +18,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Configurar o User-Agent global
+session = requests.Session()
+session.headers.update({
+    "User-Agent": "Chat-Wik/1.0 (antoniovenancio10@gmail.com)"  # Substitua com informações da sua aplicação
+})
+wikipediaapi.requests_session = session
+
 # Configuração inicial do Streamlit
 st.set_page_config(page_title="Converse com a Wikipedia 🌐", page_icon="📚")
 st.title("Converse com a Wikipedia 🌐")
@@ -56,6 +63,8 @@ def fetch_wikipedia_pages(query, language="pt"):
     valid_languages = ["en", "pt", "es", "fr", "de", "it"]
     if language not in valid_languages:
         raise ValueError(f"Idioma '{language}' não suportado. Use um dos seguintes: {', '.join(valid_languages)}")
+
+    wiki_wiki = wikipediaapi.Wikipedia(language)
 
     try:
         # Defina um User-Agent personalizado
