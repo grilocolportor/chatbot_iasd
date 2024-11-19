@@ -53,20 +53,26 @@ def model_ollama(model="phi3", temperature=0.1):
 
 # Função para buscar artigos na Wikipedia
 def fetch_wikipedia_pages(query, language="pt"):
-    valid_languages = ["en", "pt", "es", "fr", "de", "it"]  # Adicione mais idiomas suportados
+    valid_languages = ["en", "pt", "es", "fr", "de", "it"]
     if language not in valid_languages:
         raise ValueError(f"Idioma '{language}' não suportado. Use um dos seguintes: {', '.join(valid_languages)}")
-    
-    wiki_wiki = wikipediaapi.Wikipedia(language)
-    page = wiki_wiki.page(query)
-    
-    if not page.exists():
+
+    try:
+        print(f"Idioma configurado: {language}")
+        wiki_wiki = wikipediaapi.Wikipedia(language)
+    except AssertionError as e:
+        st.error(f"Erro ao inicializar Wikipedia API: {e}")
         return []
-    
+
+    page = wiki_wiki.page(query)
+
+    if not page.exists():
+        st.warning(f"Nenhuma página encontrada para '{query}' na Wikipedia ({language}).")
+        return []
+
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     document = Document(page_content=page.text, metadata={"title": page.title})
     return text_splitter.split_documents([document])
-
 
 
 # Configuração do retriever
