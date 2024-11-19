@@ -65,7 +65,10 @@ def fetch_wikipedia_pages(query, language="pt"):
     if language not in valid_languages:
         raise ValueError(f"Idioma '{language}' não suportado. Use um dos seguintes: {', '.join(valid_languages)}")
 
-    wiki_wiki = wikipediaapi.Wikipedia(language)
+    wiki_wiki = wikipediaapi.Wikipedia(
+        language=language,
+        headers={'User-Agent': 'Chat-Wik/1.0 (antoniovenancio10@gmail.com)'}
+    )
 
     try:
         # Defina um User-Agent personalizado
