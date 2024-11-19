@@ -58,8 +58,9 @@ def fetch_wikipedia_pages(query, language="pt"):
         raise ValueError(f"Idioma '{language}' não suportado. Use um dos seguintes: {', '.join(valid_languages)}")
 
     try:
-        print(f"Idioma configurado: {language}")
-        wiki_wiki = wikipediaapi.Wikipedia(language)
+        # Defina um User-Agent personalizado
+        user_agent = "https://chat-wik.streamlit.app/ (antoniovenancio10@gmail.com)"  # Substitua pelo seu e-mail ou detalhes da aplicação
+        wiki_wiki = wikipediaapi.Wikipedia(language, user_agent=user_agent)
     except AssertionError as e:
         st.error(f"Erro ao inicializar Wikipedia API: {e}")
         return []
@@ -73,6 +74,7 @@ def fetch_wikipedia_pages(query, language="pt"):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     document = Document(page_content=page.text, metadata={"title": page.title})
     return text_splitter.split_documents([document])
+
 
 
 # Configuração do retriever
