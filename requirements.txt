@@ -52,4 +52,5 @@ uvicorn==0.32.0
 websocket-client==1.8.0
 yarl==1.17.1
 wikipedia-api
-requests newspaper3k
+requests
+newspaper3k
