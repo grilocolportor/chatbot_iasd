@@ -53,5 +53,5 @@ websocket-client==1.8.0
 yarl==1.17.1
 wikipedia-api
 requests
-newspaper3k
+newspaper3k==0.2.8
 lxlm
